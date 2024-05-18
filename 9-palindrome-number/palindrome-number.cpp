@@ -1,10 +1,22 @@
 class Solution {
 public:
     bool isPalindrome(int x) {
-        string s = to_string(x);
-        for(int x = 0; x <= s.size()/2; x++){
-            if(s[x] != s[s.size() - x -1]) return false;
+        if(x < 0) return false;
+        if(x / 10 == 0) return true;
+
+        int y = 0;
+
+        while(x>=y){
+            
+            y = 10 *y + x % 10;
+            x /= 10;
+
+            cout << x << " " << y << endl;
+
+            if(y == 0) return false;
+            if(y == x) return true;
+            if(y == x/10 && x/10 != 0) return true;
         }
-        return true;
+        return false;
     }
 };
