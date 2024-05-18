@@ -8,10 +8,10 @@ public:
 
         while(x>=y){
             
-            y = 10 *y + x % 10;
+            y = 10 * y + x % 10;
             x /= 10;
 
-            cout << x << " " << y << endl;
+            //cout << x << " " << y << endl;
 
             if(y == 0) return false;
             if(y == x) return true;
