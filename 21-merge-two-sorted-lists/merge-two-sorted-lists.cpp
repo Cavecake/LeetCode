@@ -11,31 +11,29 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        ListNode* head1 = list1;
-        ListNode* head2 = list2;
-        ListNode* sortedList;
-        ListNode** insertPoint = &sortedList;
-        ListNode** insert;
+        ListNode* insertPoint = new ListNode();
+        ListNode* sortedList = insertPoint;
 
-        while(head1 != nullptr || head2 != nullptr){
-            if(head1 == nullptr) {
-                *insertPoint = head2;
-                return sortedList;
+        while(list1 || list2){
+            if(!list1) {
+                insertPoint->next = list2;
+                return sortedList->next;
             }
-            else if(head2 == nullptr) {
-                *insertPoint = head1;
-                return sortedList;
+            else if(!list2) {
+                insertPoint->next = list1;
+                return sortedList->next;
             }
-            else if(head1->val > head2->val) insert = &head2;
-            else insert = &head1;
-
-            //Insert element goto next node
-            (*insertPoint) = (*insert);
-            insertPoint = &((*insertPoint)->next);
-
-            // Remove top element
-            *insert = (*insert)->next;
+            else if(list1->val <= list2->val){
+                insertPoint->next = list1;
+                list1 = list1->next;
+                insertPoint = insertPoint-> next;                
+            }
+            else{
+                insertPoint->next = list2;
+                list2 = list2->next;
+                insertPoint = insertPoint-> next;
+            }
         }
-        return sortedList;
+        return sortedList->next;
     }
 };
