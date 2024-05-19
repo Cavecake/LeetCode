@@ -11,6 +11,9 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if(list1 == nullptr) return list2;
+        if(list2 == nullptr) return list1;
+
         ListNode* insertPoint = new ListNode();
         ListNode* sortedList = insertPoint;
 
@@ -23,15 +26,15 @@ public:
                 insertPoint->next = list1;
                 return sortedList->next;
             }
-            else if(list1->val <= list2->val){
+            else if(list1->val<=list2->val){
                 insertPoint->next = list1;
-                list1 = list1->next;
-                insertPoint = insertPoint-> next;                
+                insertPoint = list1;
+                list1 = list1->next;            
             }
             else{
                 insertPoint->next = list2;
+                insertPoint = list2;
                 list2 = list2->next;
-                insertPoint = insertPoint-> next;
             }
         }
         return sortedList->next;
