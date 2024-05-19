@@ -18,8 +18,14 @@ public:
         ListNode** insert;
 
         while(head1 != nullptr || head2 != nullptr){
-            if(head1 == nullptr) insert = &head2;
-            else if(head2 == nullptr) insert = &head1;
+            if(head1 == nullptr) {
+                *insertPoint = head2;
+                return sortedList;
+            }
+            else if(head2 == nullptr) {
+                *insertPoint = head1;
+                return sortedList;
+            }
             else if(head1->val > head2->val) insert = &head2;
             else insert = &head1;
 
