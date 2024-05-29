@@ -6,7 +6,7 @@ public:
         int steps = 0;
         while(s != "1"){
             ++steps;
-            cout << s << endl;
+            //cout << s << endl;
             if(s[s.size() - 1] == '0'){
                 s.pop_back();
             }
