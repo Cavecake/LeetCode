@@ -2,7 +2,7 @@ class Solution {
 public:
     int longestPalindrome(string s) {
         // pairs can be added to left and right of center, center can be one or two elements
-        unordered_set<char> letters;
+        set<char> letters;
         int amount_pairs = 0;
         
         for(char letter:s){
