@@ -2,20 +2,15 @@ class Solution {
 public:
     int longestPalindrome(string s) {
         // pairs can be added to left and right of center, center can be one or two elements
-        set<char> letters;
-        int amount_pairs = 0;
+        unordered_map<char, int> letters;
+        int odd_elements = 0;
         
         for(char letter:s){
-             if (letters.find(letter) == letters.end())
-             {
-                 letters.insert(letter);
-                 continue;
-             }
-            letters.erase(letter);
-            ++amount_pairs;
+            ++letters[letter];
+            if (letters[letter] % 2 == 1) odd_elements++;
+            else odd_elements--;
         }
-        
-        if(s.size() == 2 * amount_pairs) return s.size();
-        return 2*amount_pairs + 1;
+        if(odd_elements < 2) return s.size();
+        return s.size() - odd_elements + 1;
     }
 };
